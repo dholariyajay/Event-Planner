@@ -26,7 +26,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EventForm = ({ open, handleClose, event, isEditing }) => {
-  const { addEvent, updateEvent, deleteEvent } = useEvents();
+  const { createEvent, updateEvent, deleteEvent } = useEvents();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   
@@ -113,9 +113,9 @@ const EventForm = ({ open, handleClose, event, isEditing }) => {
     };
     
     if (isEditing && event) {
-      updateEvent({ ...eventData, id: event.id });
+      updateEvent(event.id, eventData);
     } else {
-      addEvent(eventData);
+      createEvent(eventData);
     }
     
     handleClose();
